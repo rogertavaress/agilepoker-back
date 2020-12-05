@@ -1,17 +1,21 @@
+import { Exclude } from 'class-transformer';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
+  UpdateDateColumn
 } from 'typeorm';
 
 @Entity('meets')
 class Meet {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @Column()
+  @Column({ nullable: true })
+  idMeet: string;
+
+  @Column({ unique: true })
   name: string;
 
   @Column()
@@ -25,6 +29,9 @@ class Meet {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @Exclude()
+  isCreated: boolean;
 }
 
 export default Meet;
