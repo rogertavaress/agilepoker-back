@@ -1,5 +1,5 @@
 export default interface IFindMeetDTO {
-  id?: string;
+  idMeet?: string;
   name?: string;
   email?: string;
 }

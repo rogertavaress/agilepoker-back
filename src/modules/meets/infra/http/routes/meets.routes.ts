@@ -6,7 +6,7 @@ const meetsRouter = Router();
 const meetsController = new MeetsController();
 
 meetsRouter.post(
-  '/',
+  '/create',
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
@@ -14,6 +14,17 @@ meetsRouter.post(
     },
   }),
   meetsController.create,
+);
+
+meetsRouter.post(
+  '/joinmeet',
+  celebrate({
+    [Segments.BODY]: {
+      idMeet: Joi.string().required(),
+      name: Joi.string().required()
+    },
+  }),
+  meetsController.joinMeet,
 );
 
 export default meetsRouter;
