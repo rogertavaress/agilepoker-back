@@ -1,4 +1,3 @@
-import MeetStatusEnum from '@modules/meets/enums/MeetStatusEnum';
 import {
   Entity,
   Column,
@@ -11,23 +10,13 @@ import {
 import History from './History';
 import Participant from './Participant';
 
-@Entity('meets')
-class Meet {
+@Entity('votes')
+class Vote {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column()
-  name: string;
-
-  @Column()
-  email: string;
-
-  @Column({
-    type: 'enum',
-    enum: MeetStatusEnum,
-    default: MeetStatusEnum.STARTED,
-  })
-  status: MeetStatusEnum;
+  number: number;
 
   @Column()
   historyId: string;
@@ -50,4 +39,4 @@ class Meet {
   updated_at: Date;
 }
 
-export default Meet;
+export default Vote;

@@ -4,32 +4,26 @@ import Meet from '../infra/typeorm/entities/Meet';
 import IMeetsRepository from '../repositories/IMeetsRepository';
 
 interface IRequest {
-  idMeet?: string;
+  id: string;
   name: string;
-  email?: string;
 }
 
 @injectable()
-class CreateUserService {
+class JoinMeetService {
   constructor(
     @inject('MeetsRepository')
     private meetsRepository: IMeetsRepository,
   ) {}
 
-  public async execute({ name, email }: IRequest): Promise<Meet> {
-    if (!name || !email) {
-      throw new AppError('Dados incorretos');
+  public async execute({ id, name }: IRequest): Promise<Meet> {
+    const meet = await this.meetsRepository.findByID(id);
+
+    if (!meet) {
+      throw new AppError('Reunião não encontrada');
     }
-
-    const meet = this.meetsRepository.create({
-      name,
-      email,
-    });
-
-    await this.meetsRepository.save(meet);
 
     return meet;
   }
 }
 
-export default CreateUserService;
+export default JoinMeetService;

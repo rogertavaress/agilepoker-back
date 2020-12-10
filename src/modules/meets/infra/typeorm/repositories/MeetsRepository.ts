@@ -12,15 +12,11 @@ class MeetsRepository implements IMeetsRepository {
   }
 
   public async findByID(id: string): Promise<Meet | undefined> {
-    const meet = await this.ormRepository.findOne(id);
-
-    return meet;
+    return this.ormRepository.findOne(id);
   }
 
   public async find(data: IFindMeetDTO): Promise<Meet[]> {
-    const meet = await this.ormRepository.find({ ...data });
-
-    return meet;
+    return this.ormRepository.find({ ...data });
   }
 
   public create(data: ICreateMeetDTO): Meet {

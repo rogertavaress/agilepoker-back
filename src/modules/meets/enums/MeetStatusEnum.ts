@@ -1,7 +1,7 @@
-enum CRMStatusEnum {
+enum MeetStatusEnum {
   STARTED = 'started',
   PAUSE = 'pause',
   FINISHED = 'finished',
 }
 
-export default CRMStatusEnum;
+export default MeetStatusEnum;

@@ -1,30 +1,32 @@
 import CreateUserService from '@modules/meets/services/CreateMeetService';
+import JoinUserService from '@modules/meets/services/JoinMeetService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 export default class MeetsController {
-  public async create(req: Request, res: Response): Promise<Response> {
+  public async store(req: Request, res: Response): Promise<Response> {
     const { name, email } = req.body;
 
     const createdUser = container.resolve(CreateUserService);
 
-    const isCreated = await createdUser.create({
+    const meet = await createdUser.execute({
       name,
-      email
+      email,
     });
 
-    return res.status(200).json({ isCreated: isCreated });
+    return res.status(200).json(meet);
   }
 
-  public async joinMeet(req: Request, res: Response): Promise<Response> {
-    const { idMeet, name } = req.body;
+  public async index(req: Request, res: Response): Promise<Response> {
+    const { id, name } = req.body;
 
-    const createdUser = container.resolve(CreateUserService);
+    const joinUser = container.resolve(JoinUserService);
 
-    const meet = await createdUser.joinMeet({
-      idMeet, name
+    const meet = await joinUser.execute({
+      id,
+      name,
     });
 
-    return res.status(200).json({ meetObject: meet });
+    return res.status(200).json(meet);
   }
 }

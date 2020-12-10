@@ -13,7 +13,7 @@ meetsRouter.post(
       email: Joi.string().email().required(),
     },
   }),
-  meetsController.create,
+  meetsController.store,
 );
 
 meetsRouter.post(
@@ -21,10 +21,10 @@ meetsRouter.post(
   celebrate({
     [Segments.BODY]: {
       idMeet: Joi.string().required(),
-      name: Joi.string().required()
+      name: Joi.string().required(),
     },
   }),
-  meetsController.joinMeet,
+  meetsController.index,
 );
 
 export default meetsRouter;
