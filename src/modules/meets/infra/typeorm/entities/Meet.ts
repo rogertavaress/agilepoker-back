@@ -5,8 +5,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
-  JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import History from './History';
 import Participant from './Participant';
@@ -29,19 +28,11 @@ class Meet {
   })
   status: MeetStatusEnum;
 
-  @Column()
-  historyId: string;
+  @OneToMany(() => History, history => history.meet)
+  histories: History[];
 
-  @ManyToOne(() => History)
-  @JoinColumn({ name: 'historyId' })
-  history: History;
-
-  @Column()
-  participantId: string;
-
-  @ManyToOne(() => Participant)
-  @JoinColumn({ name: 'participantId' })
-  participant: Participant;
+  @OneToMany(() => Participant, participant => participant.meet)
+  participants: Participant[];
 
   @CreateDateColumn()
   created_at: Date;

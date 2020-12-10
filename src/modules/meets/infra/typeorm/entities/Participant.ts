@@ -4,7 +4,12 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
+  OneToMany,
 } from 'typeorm';
+import Meet from './Meet';
+import Vote from './Vote';
 
 @Entity('participants')
 class Participant {
@@ -13,6 +18,16 @@ class Participant {
 
   @Column()
   name: string;
+
+  @Column()
+  meetId: string;
+
+  @ManyToOne(() => Meet)
+  @JoinColumn({ name: 'meetId' })
+  meet: Meet;
+
+  @OneToMany(() => Vote, vote => vote.participant)
+  votes: Vote[];
 
   @CreateDateColumn()
   created_at: Date;

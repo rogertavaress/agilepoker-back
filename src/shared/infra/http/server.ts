@@ -8,22 +8,19 @@ import 'express-async-errors';
 
 import uploadConfig from '@config/upload';
 import http from 'http';
-import { Server, Socket } from 'socket.io';
 import AppError from '@shared/errors/AppError';
 import rateLimiter from './middlewares/rateLimiter';
 import routes from './routes';
+
+import sockets from './sockets';
 
 import '@shared/infra/typeorm';
 import '@shared/container';
 
 const app = express();
 const httpApp = http.createServer(app);
-const io = new Server(httpApp);
 
-io.on('connection', (socket: Socket) => {
-  console.log(socket.id);
-});
-
+sockets(httpApp);
 app.use(rateLimiter);
 app.use(cors());
 app.use(express.json());
