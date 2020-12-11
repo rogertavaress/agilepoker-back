@@ -2,6 +2,7 @@ import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import Meet from '../infra/typeorm/entities/Meet';
 import IMeetsRepository from '../repositories/IMeetsRepository';
+import IParticipantsRepository from '../repositories/IParticipantsRepository';
 
 interface IRequest {
   id: string;
@@ -13,6 +14,9 @@ class JoinMeetService {
   constructor(
     @inject('MeetsRepository')
     private meetsRepository: IMeetsRepository,
+
+    @inject('ParticipantsRepository')
+    private participantsRepository: IParticipantsRepository,
   ) {}
 
   public async execute({ id, name }: IRequest): Promise<Meet> {
@@ -22,7 +26,14 @@ class JoinMeetService {
       throw new AppError('Reunião não encontrada');
     }
 
-    return meet;
+    const participant = await this.participantsRepository.create({
+      meetId: meet.id,
+      name,
+    });
+
+    await this.participantsRepository.save(participant);
+
+    return { ...meet, participants: [...meet.participants, participant] };
   }
 }
 

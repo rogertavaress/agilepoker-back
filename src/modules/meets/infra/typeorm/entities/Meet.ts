@@ -13,7 +13,7 @@ import Participant from './Participant';
 @Entity('meets')
 class Meet {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column()
   name: string;
