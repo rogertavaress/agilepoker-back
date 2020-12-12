@@ -15,4 +15,16 @@ export default class MeetsController {
 
     return res.status(200).json(meet);
   }
+
+  public async updateStatus(req: Request, res: Response): Promise<Response> {
+    const { idMeet, statusMeet } = req.body;
+
+    const createdUser = container.resolve(CreateUserService);
+
+    const meet = await createdUser.updateStatus({
+      idMeet,
+      statusMeet
+    });
+    return res.status(200).json(meet);
+  }
 }
