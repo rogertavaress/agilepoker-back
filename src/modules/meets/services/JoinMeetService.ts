@@ -1,6 +1,5 @@
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
-import Meet from '../infra/typeorm/entities/Meet';
 import IMeetsRepository from '../repositories/IMeetsRepository';
 import IParticipantsRepository from '../repositories/IParticipantsRepository';
 
@@ -19,7 +18,7 @@ class JoinMeetService {
     private participantsRepository: IParticipantsRepository,
   ) {}
 
-  public async execute({ id, name }: IRequest): Promise<Meet> {
+  public async execute({ id, name }: IRequest): Promise<any> {
     const meet = await this.meetsRepository.findByID(id);
 
     if (!meet) {
@@ -34,10 +33,13 @@ class JoinMeetService {
     await this.participantsRepository.save(participant);
 
     return {
-      ...meet,
-      participants: meet.participants
-        ? [...meet.participants, participant]
-        : [participant],
+      meet: {
+        ...meet,
+        participants: meet.participants
+          ? [...meet.participants, participant]
+          : [participant],
+      },
+      participant,
     };
   }
 }

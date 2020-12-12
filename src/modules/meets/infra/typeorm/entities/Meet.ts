@@ -6,6 +6,8 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import History from './History';
 import Participant from './Participant';
@@ -24,9 +26,16 @@ class Meet {
   @Column({
     type: 'enum',
     enum: MeetStatusEnum,
-    default: MeetStatusEnum.STARTED,
+    default: MeetStatusEnum.AWAITING_SIGN,
   })
   status: MeetStatusEnum;
+
+  @Column()
+  historyNowId: string;
+
+  @ManyToOne(() => History)
+  @JoinColumn({ name: 'historyNowId' })
+  historyNow: History;
 
   @OneToMany(() => History, history => history.meet)
   histories: History[];
