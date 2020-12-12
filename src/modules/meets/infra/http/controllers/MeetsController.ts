@@ -1,3 +1,4 @@
+import ChangeHistoryNowService from '@modules/meets/services/ChangeHistoryNowService';
 import CreateUserService from '@modules/meets/services/CreateMeetService';
 import UpdateMeetStatusService from '@modules/meets/services/UpdateMeetStatusService';
 import { Request, Response } from 'express';
@@ -26,6 +27,22 @@ export default class MeetsController {
       idMeet,
       statusMeet,
     });
+    return res.status(200).json(meet);
+  }
+
+  public async updateHistoryNow(
+    req: Request,
+    res: Response,
+  ): Promise<Response> {
+    const { idMeet, idHistoryNow } = req.body;
+
+    const changeHistoryNow = container.resolve(ChangeHistoryNowService);
+
+    const meet = await changeHistoryNow.execute({
+      idMeet,
+      idHistory: idHistoryNow,
+    });
+
     return res.status(200).json(meet);
   }
 }

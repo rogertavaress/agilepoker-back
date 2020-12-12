@@ -11,6 +11,6 @@ routes.get('/', (req, res) => {
 
 routes.use('/meets', meetsRouter);
 routes.use('/participants', participantsRouter);
-routes.use('/history', historyRouter);
+routes.use('/histories', historyRouter);
 
 export default routes;

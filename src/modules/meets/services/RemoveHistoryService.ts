@@ -1,27 +1,41 @@
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import IHistoryRepository from '../repositories/IHistoryRepository';
-import History from '../infra/typeorm/entities/History';
+import Meet from '../infra/typeorm/entities/Meet';
+import IMeetsRepository from '../repositories/IMeetsRepository';
 
 interface IRequest {
-    id?: number
+  id: string;
 }
 @injectable()
 class RemoveHistoryService {
-    constructor(
-        @inject('HistoryRepository')
-        private historyRepository: IHistoryRepository,
-    ) { }
+  constructor(
+    @inject('MeetsRepository')
+    private meetsRepository: IMeetsRepository,
 
-    public async destroy({ id }: IRequest): Promise<History> {
-        if (!id) {
-            throw new AppError('Dados incorretos');
-        }
+    @inject('HistoryRepository')
+    private historyRepository: IHistoryRepository,
+  ) {}
 
-        return this.historyRepository.destroy({
-            id
-        });
+  public async execute({ id }: IRequest): Promise<Meet> {
+    const history = await this.historyRepository.findByID(id);
+
+    if (!history) {
+      throw new AppError('História não encontrada');
     }
+
+    const { meetId } = history;
+
+    this.historyRepository.destroy(history);
+
+    const meet = await this.meetsRepository.findByID(meetId);
+
+    if (!meet) {
+      throw new AppError('Reunião não encontrada');
+    }
+
+    return meet;
+  }
 }
 
 export default RemoveHistoryService;

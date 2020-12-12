@@ -6,7 +6,7 @@ const historyRouter = Router();
 const historyController = new HistoryController();
 
 historyRouter.post(
-  '/create',
+  '/',
   celebrate({
     [Segments.BODY]: {
       meetId: Joi.string().required(),
@@ -17,11 +17,11 @@ historyRouter.post(
   historyController.store,
 );
 
-historyRouter.post(
-  '/remove',
+historyRouter.delete(
+  '/',
   celebrate({
     [Segments.BODY]: {
-      id: Joi.number().required()
+      id: Joi.number().required(),
     },
   }),
   historyController.destroy,

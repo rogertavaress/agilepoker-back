@@ -27,4 +27,15 @@ meetsRouter.patch(
   meetsController.updateStatus,
 );
 
+meetsRouter.patch(
+  '/historyNow',
+  celebrate({
+    [Segments.BODY]: {
+      idMeet: Joi.string().required(),
+      idHistoryNow: Joi.string().required(),
+    },
+  }),
+  meetsController.updateHistoryNow,
+);
+
 export default meetsRouter;

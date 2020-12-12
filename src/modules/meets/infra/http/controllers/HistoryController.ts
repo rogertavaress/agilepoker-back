@@ -4,28 +4,29 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 export default class HistoryController {
-    public async store(req: Request, res: Response): Promise<Response> {
-        const { name, category, meetId } = req.body;
+  public async store(req: Request, res: Response): Promise<Response> {
+    const { name, category, meetId } = req.body;
 
-        const createHistory = container.resolve(CreateHistoryService);
+    const createHistory = container.resolve(CreateHistoryService);
 
-        const meet = await createHistory.execute({
-            name,
-            category,
-            meetId
-        });
+    const meet = await createHistory.execute({
+      name,
+      category,
+      meetId,
+    });
 
-        return res.status(200).json(meet);
-    }
-    public async destroy(req: Request, res: Response): Promise<Response> {
-        const { id } = req.body;
+    return res.status(200).json(meet);
+  }
 
-        const createHistory = container.resolve(RemoveHistoryService);
+  public async destroy(req: Request, res: Response): Promise<Response> {
+    const { id } = req.body;
 
-        const history = await createHistory.destroy({
-            id
-        });
-        
-        return res.status(200).json(history);
-    }
+    const createHistory = container.resolve(RemoveHistoryService);
+
+    const history = await createHistory.execute({
+      id,
+    });
+
+    return res.status(200).json(history);
+  }
 }
