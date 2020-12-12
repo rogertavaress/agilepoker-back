@@ -13,7 +13,7 @@ import Vote from './Vote';
 
 @Entity('histories')
 class History {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()

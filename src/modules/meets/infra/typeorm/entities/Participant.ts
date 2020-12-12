@@ -13,7 +13,7 @@ import Vote from './Vote';
 
 @Entity('participants')
 class Participant {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()

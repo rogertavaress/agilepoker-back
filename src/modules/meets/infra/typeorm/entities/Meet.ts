@@ -12,7 +12,7 @@ import Participant from './Participant';
 
 @Entity('meets')
 class Meet {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
