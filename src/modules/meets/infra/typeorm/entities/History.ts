@@ -13,8 +13,8 @@ import Vote from './Vote';
 
 @Entity('histories')
 class History {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn('increment')
+  id: number;
 
   @Column()
   name: string;
