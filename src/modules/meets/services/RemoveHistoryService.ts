@@ -4,7 +4,7 @@ import IHistoryRepository from '../repositories/IHistoryRepository';
 import History from '../infra/typeorm/entities/History';
 
 interface IRequest {
-    id?: number
+    id?: string
 }
 @injectable()
 class RemoveHistoryService {
