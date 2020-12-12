@@ -33,7 +33,12 @@ class JoinMeetService {
 
     await this.participantsRepository.save(participant);
 
-    return { ...meet, participants: [...meet.participants, participant] };
+    return {
+      ...meet,
+      participants: meet.participants
+        ? [...meet.participants, participant]
+        : [participant],
+    };
   }
 }
 
