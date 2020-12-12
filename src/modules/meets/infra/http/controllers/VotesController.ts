@@ -4,12 +4,12 @@ import { container } from 'tsyringe';
 
 export default class VotesController {
     public async store(req: Request, res: Response): Promise<Response> {
-        const { number, participantId, historyId } = req.body;
+        const { number, participantId, historyId, meetId } = req.body;
 
         const createVotes = container.resolve(CreateVotesService);
 
         const meet = await createVotes.execute({
-            number, participantId, historyId
+            number, participantId, historyId, meetId
         });
 
         return res.status(200).json(meet);

@@ -11,7 +11,8 @@ votesRouter.post(
     [Segments.BODY]: {
       number: Joi.number().required(),
       participantId: Joi.string().required(),
-      historyId: Joi.string(),
+      historyId: Joi.string().required(),
+      meetId: Joi.string().required(),
     },
   }),
   votesController.store,
