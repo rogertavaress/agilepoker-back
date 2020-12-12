@@ -1,7 +1,7 @@
 enum MeetStatusEnum {
   AWAITING_SIGN = 'awaiting_sign',
   STARTED = 'started',
-  PAUSE = 'pause',
+  PAUSED = 'paused',
   FINISHED = 'finished',
 }
 

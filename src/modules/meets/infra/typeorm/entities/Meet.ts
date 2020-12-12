@@ -30,7 +30,7 @@ class Meet {
   })
   status: MeetStatusEnum;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   historyNowId: string;
 
   @ManyToOne(() => History)

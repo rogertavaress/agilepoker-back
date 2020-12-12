@@ -25,7 +25,7 @@ class JoinMeetService {
       throw new AppError('Reunião não encontrada');
     }
 
-    const participant = await this.participantsRepository.create({
+    const participant = this.participantsRepository.create({
       meetId: meet.id,
       name,
     });
