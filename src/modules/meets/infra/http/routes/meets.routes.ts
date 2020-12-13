@@ -32,7 +32,7 @@ meetsRouter.patch(
   celebrate({
     [Segments.BODY]: {
       idMeet: Joi.string().required(),
-      idHistoryNow: Joi.string().required(),
+      idHistoryNow: Joi.number().required(),
     },
   }),
   meetsController.updateHistoryNow,

@@ -5,7 +5,7 @@ import IMeetsRepository from '../repositories/IMeetsRepository';
 
 interface IRequest {
   idMeet: string;
-  idHistory: string;
+  idHistory: number;
 }
 @injectable()
 class ChangeHistoryNowService {
@@ -15,15 +15,22 @@ class ChangeHistoryNowService {
   ) {}
 
   public async execute({ idMeet, idHistory }: IRequest): Promise<Meet> {
-    const meet = await this.meetsRepository.findByID(idMeet);
+    let meet = await this.meetsRepository.findByID(idMeet);
 
     if (!meet) {
       throw new AppError('Reunião não encontrada');
     }
 
     meet.historyNowId = idHistory;
+    meet.historyNow = undefined;
 
     await this.meetsRepository.save(meet);
+
+    meet = await this.meetsRepository.findByID(idMeet);
+
+    if (!meet) {
+      throw new AppError('Reunião não encontrada');
+    }
 
     return meet;
   }

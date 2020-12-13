@@ -31,11 +31,11 @@ class Meet {
   status: MeetStatusEnum;
 
   @Column({ nullable: true })
-  historyNowId: string;
+  historyNowId: number;
 
   @ManyToOne(() => History)
   @JoinColumn({ name: 'historyNowId' })
-  historyNow: History;
+  historyNow?: History;
 
   @OneToMany(() => History, history => history.meet)
   histories: History[];

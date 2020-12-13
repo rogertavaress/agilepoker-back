@@ -1,3 +1,3 @@
-export default interface IDeleteistoryDTO {
-  id?: string;
+export default interface IDeleteHistoryDTO {
+  id?: number;
 }

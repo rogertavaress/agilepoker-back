@@ -15,6 +15,9 @@ class MeetsRepository implements IMeetsRepository {
     return this.ormRepository.findOne(id, {
       relations: [
         'participants',
+        'historyNow',
+        'historyNow.votes',
+        'historyNow.votes.participant',
         'histories',
         'histories.votes',
         'histories.votes.participant',

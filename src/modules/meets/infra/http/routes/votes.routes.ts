@@ -6,12 +6,12 @@ const votesRouter = Router();
 const votesController = new VotesController();
 
 votesRouter.post(
-  '/create',
+  '/',
   celebrate({
     [Segments.BODY]: {
       number: Joi.number().required(),
       participantId: Joi.string().required(),
-      historyId: Joi.string().required(),
+      historyId: Joi.number().required(),
       meetId: Joi.string().required(),
     },
   }),
