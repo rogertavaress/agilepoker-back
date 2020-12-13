@@ -6,14 +6,16 @@ const sockets = (http: any): void => {
 
   io.on('connection', (socket: Socket) => {
     console.log(`> Usuário conectado: ${socket.id}`);
-  });
 
-  io.on('update-participants-request', (socket: Socket) => {
-    socket.emit('update-participant', () => {});
-  });
+    socket.on('join-meet', (data: any) => {
+      console.log(`join-meet: ${data.id}`);
+      socket.join(data.id);
+    });
 
-  io.on('update-votes-request', (socket: Socket) => {
-    socket.emit('update-votes', () => {});
+    socket.on('sync-request', (data: any) => {
+      console.log(`sync-request: ${data.id}`);
+      socket.to(data.id).emit('sync', data);
+    });
   });
 };
 
