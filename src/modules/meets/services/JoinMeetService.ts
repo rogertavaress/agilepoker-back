@@ -1,5 +1,6 @@
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
+import { isUuid } from 'uuidv4';
 import IMeetsRepository from '../repositories/IMeetsRepository';
 import IParticipantsRepository from '../repositories/IParticipantsRepository';
 
@@ -19,6 +20,12 @@ class JoinMeetService {
   ) {}
 
   public async execute({ id, name }: IRequest): Promise<any> {
+    const isIdValid = isUuid(id);
+
+    if (!isIdValid) {
+      throw new AppError('Código inválido');
+    }
+
     const meet = await this.meetsRepository.findByID(id);
 
     if (!meet) {

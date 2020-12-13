@@ -9,8 +9,15 @@ meetsRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
-      name: Joi.string().required(),
-      email: Joi.string().email().required(),
+      name: Joi.string().required().messages({
+        'string.empty': `Seu nome não pode ficar vazio`,
+        'any.required': `Campo nome é obrigatório`,
+      }),
+      email: Joi.string().email().required().messages({
+        'string.empty': `Seu email não pode ser vazio`,
+        'string.email': `Email inválido`,
+        'any.required': `Campo email é obrigatório`,
+      }),
     },
   }),
   meetsController.store,
@@ -20,7 +27,10 @@ meetsRouter.patch(
   '/status',
   celebrate({
     [Segments.BODY]: {
-      idMeet: Joi.string().required(),
+      idMeet: Joi.string().required().messages({
+        'string.empty': `O código da reunião não pode ser vazio`,
+        'any.required': `Campo código da reunião é obrigatório`,
+      }),
       statusMeet: Joi.string().required(),
     },
   }),

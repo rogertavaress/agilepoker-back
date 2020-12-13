@@ -19,7 +19,7 @@ class Vote {
   number: number;
 
   @Column()
-  historyId: string;
+  historyId: number;
 
   @ManyToOne(() => History)
   @JoinColumn({ name: 'historyId' })

@@ -30,7 +30,7 @@ class CreateVotesService {
     historyId,
     meetId,
   }: IRequest): Promise<Meet> {
-    const meet = await this.meetsRepository.findByID(meetId);
+    let meet = await this.meetsRepository.findByID(meetId);
 
     if (!meet) {
       throw new AppError('Reunião não encontrada');
@@ -42,14 +42,29 @@ class CreateVotesService {
       throw new AppError('História não encontrada');
     }
 
-    const vote = this.votesRepository.create({
-      number,
-      participantId,
+    let vote = await this.votesRepository.findOne({
       historyId,
-      meetId,
+      participantId,
     });
 
+    if (vote) {
+      vote.number = number;
+    } else {
+      vote = this.votesRepository.create({
+        number,
+        participantId,
+        historyId,
+        meetId,
+      });
+    }
+
     await this.votesRepository.save(vote);
+
+    meet = await this.meetsRepository.findByID(meetId);
+
+    if (!meet) {
+      throw new AppError('Reunião não encontrada');
+    }
 
     return meet;
   }

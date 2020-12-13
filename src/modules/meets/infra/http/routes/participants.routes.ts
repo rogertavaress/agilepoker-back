@@ -9,8 +9,14 @@ participantsRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
-      idMeet: Joi.string().required(),
-      name: Joi.string().required(),
+      idMeet: Joi.string().required().messages({
+        'string.empty': `O código da reunião não pode ser vazio`,
+        'any.required': `Campo código da reunião é obrigatório`,
+      }),
+      name: Joi.string().required().messages({
+        'string.empty': `Seu nome não pode ficar vazio`,
+        'any.required': `Campo nome é obrigatório`,
+      }),
     },
   }),
   participantsController.store,
