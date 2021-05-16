@@ -9,7 +9,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_PASSWORD: nZUV6vai1fbAkLoqbP2ali
+      POSTGRES_PASSWORD: agilepoker-db
       POSTGRES_USER: agilepoker-db
 
   # cache_db:

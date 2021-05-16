@@ -1,28 +1,16 @@
-module.exports = process.env.NODE_ENV == "development" ? [
+module.exports = [
   {
     "name": "default",
     "type": "postgres",
-    "host": "localhost",
+    "host": process.env.POSTGRES_HOST,
     "port": 5432,
-    "username": "agilepoker-db",
-    "password": "nZUV6vai1fbAkLoqbP2ali",
-    "database": "agilepoker-db",
-    "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
-    "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
+    "username": process.env.POSTGRES_USER,
+    "password": process.env.POSTGRES_PASS,
+    "database": process.env.POSTGRES_DB,
+    "entities": [process.env.POSTGRES_ENTITIES],
+    "migrations": [process.env.POSTGRES_MIGRATIONS],
     "cli": {
-      "migrationsDir": "./src/shared/infra/typeorm/migrations"
-    },
-    "synchronize": true
-  }
-] : [
-  {
-    "name": "default",
-    "type": "postgres",
-    "url": "postgres://swhdzsuoqeisre:3bfd1a3ecffd7dccd33dd8c5bbaa350835b9392eafc0e29ee22faea7f60ce74d@ec2-54-152-185-191.compute-1.amazonaws.com:5432/dtgaj4hes20hk",
-    "entities": ["./dist/modules/**/infra/typeorm/entities/*.js"],
-    "migrations": ["./dist/shared/infra/typeorm/migrations/*.js"],
-    "cli": {
-      "migrationsDir": "./dist/shared/infra/typeorm/migrations"
+      "migrationsDir": process.env.POSTGRES_MIGRATIONS_DIR
     },
     "synchronize": true
   }
