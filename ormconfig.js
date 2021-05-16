@@ -12,6 +12,6 @@ module.exports = [
     "cli": {
       "migrationsDir": process.env.POSTGRES_MIGRATIONS_DIR
     },
-    "synchronize": true
+    "synchronize": false,
   }
 ]
