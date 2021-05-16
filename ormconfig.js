@@ -1,4 +1,4 @@
-process.env.NODE_ENV == "development" ? [
+module.exports = process.env.NODE_ENV == "development" ? [
   {
     "name": "default",
     "type": "postgres",
