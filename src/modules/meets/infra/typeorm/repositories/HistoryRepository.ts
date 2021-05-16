@@ -10,7 +10,7 @@ class HistoryRepository implements IHistoryRepository {
     this.ormRepository = getRepository(History);
   }
 
-  public async findByID(id: number): Promise<History | undefined> {
+  public async findByID(id: string): Promise<History | undefined> {
     return this.ormRepository.findOne(id);
   }
 

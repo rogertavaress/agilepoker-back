@@ -8,7 +8,7 @@ import IVotesRepository from '../repositories/IVotesRepository';
 interface IRequest {
   number: number;
   participantId: string;
-  historyId: number;
+  historyId: string;
   meetId: string;
 }
 @injectable()

@@ -1,4 +1,4 @@
 export default interface IFindOneVoteDTO {
-  historyId?: number;
+  historyId?: string;
   participantId?: string;
 }

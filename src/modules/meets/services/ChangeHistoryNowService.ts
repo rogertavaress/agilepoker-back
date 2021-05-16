@@ -6,7 +6,7 @@ import IMeetsRepository from '../repositories/IMeetsRepository';
 
 interface IRequest {
   idMeet: string;
-  idHistory: number;
+  idHistory: string;
 }
 @injectable()
 class ChangeHistoryNowService {

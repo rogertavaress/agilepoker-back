@@ -31,7 +31,7 @@ class Meet {
   status: MeetStatusEnum;
 
   @Column({ nullable: true })
-  historyNowId: number;
+  historyNowId: string;
 
   @ManyToOne(() => History)
   @JoinColumn({ name: 'historyNowId' })
