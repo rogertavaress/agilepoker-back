@@ -1,12 +1,16 @@
+const { parse } = require("pg-connection-string");
+
+const connectionOptions = parse(process.env.DATABASE_URL);
+
 module.exports = [
   {
     "name": "default",
     "type": "postgres",
-    "host": process.env.POSTGRES_HOST,
-    "port": 5432,
-    "username": process.env.POSTGRES_USER,
-    "password": process.env.POSTGRES_PASS,
-    "database": process.env.POSTGRES_DB,
+    "host": connectionOptions.host,
+    "port": connectionOptions.port,
+    "username": connectionOptions.user,
+    "password": connectionOptions.password,
+    "database": connectionOptions.database,
     "entities": [process.env.POSTGRES_ENTITIES],
     "migrations": [process.env.POSTGRES_MIGRATIONS],
     "cli": {
