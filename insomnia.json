@@ -1,0 +1,342 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2021-06-11T00:13:57.949Z",
+  "__export_source": "insomnia.desktop.app:v2021.1.1",
+  "resources": [
+    {
+      "_id": "req_1a42eff3a8744719b0a32ca1c5959e78",
+      "parentId": "wrk_7b2ea3b3bd7d4aee8f73a5021b1f3cfe",
+      "modified": 1623369117561,
+      "created": 1623368514666,
+      "url": "https://agilepoker-api.herokuapp.com/",
+      "name": "Home",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1623368514667,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "wrk_7b2ea3b3bd7d4aee8f73a5021b1f3cfe",
+      "parentId": null,
+      "modified": 1623368489965,
+      "created": 1623368489965,
+      "name": "Agile Poker",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_766aecade387401487d1fd545759fce4",
+      "parentId": "fld_05ff0e0415134cac9f37364d6790ad41",
+      "modified": 1623368978331,
+      "created": 1623368923224,
+      "url": "https://agilepoker-api.herokuapp.com/meets",
+      "name": "Criar",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Rogério\",\n\t\"email\": \"rogerioctf@gmail.com\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_5fae7dac99234d97b22c4bcbd1f48802"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1620899076717,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_05ff0e0415134cac9f37364d6790ad41",
+      "parentId": "wrk_7b2ea3b3bd7d4aee8f73a5021b1f3cfe",
+      "modified": 1623368498922,
+      "created": 1623368498922,
+      "name": "meets",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1623368498923,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_999c740b60774040b02ce36831524109",
+      "parentId": "fld_05ff0e0415134cac9f37364d6790ad41",
+      "modified": 1623369086092,
+      "created": 1623369006913,
+      "url": "https://agilepoker-api.herokuapp.com/meets/status",
+      "name": "Alterar status",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"idMeet\": \"fb4a50d3-bf08-4fff-bb50-220e055d4b55\",\n\t\"statusMeet\": \"started\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_5fae7dac99234d97b22c4bcbd1f48802"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1619664357742,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_696fd25088c8407e94b73dd11b668c4f",
+      "parentId": "fld_05ff0e0415134cac9f37364d6790ad41",
+      "modified": 1623369591948,
+      "created": 1623369195266,
+      "url": "https://agilepoker-api.herokuapp.com/meets/historyNow",
+      "name": "Alterar História atual",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"idMeet\": \"fb4a50d3-bf08-4fff-bb50-220e055d4b55\",\n\t\"idHistoryNow\": 1\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_5fae7dac99234d97b22c4bcbd1f48802"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1619046998254.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_2cab0629dad74ea88abfd8dfa39a1cff",
+      "parentId": "fld_41051293911d4d098cb912a6fda7c2f0",
+      "modified": 1623369657698,
+      "created": 1623369249494,
+      "url": "https://agilepoker-api.herokuapp.com/histories",
+      "name": "Criar",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"meetId\": \"fb4a50d3-bf08-4fff-bb50-220e055d4b55\",\n\t\"name\": \"Criar um botão\",\n\t\"category\": \"Feature\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_5fae7dac99234d97b22c4bcbd1f48802"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1623369649900,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_41051293911d4d098cb912a6fda7c2f0",
+      "parentId": "wrk_7b2ea3b3bd7d4aee8f73a5021b1f3cfe",
+      "modified": 1623369241847,
+      "created": 1623369230727,
+      "name": "history",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1623368498873,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_06a62ba087b343648fd68974ab6d2cf5",
+      "parentId": "fld_41051293911d4d098cb912a6fda7c2f0",
+      "modified": 1623369733212,
+      "created": 1623369649850,
+      "url": "https://agilepoker-api.herokuapp.com/histories",
+      "name": "Apagar (Em construção)",
+      "description": "",
+      "method": "DELETE",
+      "body": { "mimeType": "application/json", "text": "{\n\t\"id\": 1\n}" },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_5ea018b7f849425aba994a7c0137c94a"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1623369649850,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_70e305d8388c4b4999e344b51115d78d",
+      "parentId": "fld_aa3d69a5e02d4acd80ad21ae555b599c",
+      "modified": 1623370260626,
+      "created": 1623370121805,
+      "url": "https://agilepoker-api.herokuapp.com/participants",
+      "name": "Criar",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"idMeet\": \"fb4a50d3-bf08-4fff-bb50-220e055d4b55\",\n\t\"name\": \"Anderson\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_a205bc6a7d4245a28d9215d6ebd27eb1"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1623369953681,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_aa3d69a5e02d4acd80ad21ae555b599c",
+      "parentId": "wrk_7b2ea3b3bd7d4aee8f73a5021b1f3cfe",
+      "modified": 1623369925394,
+      "created": 1623369918067,
+      "name": "participants",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1623368498823,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_675778168d7c46c6bfd8aa5bab7d6336",
+      "parentId": "fld_ec3a9b6a5ee04e5bb08a501081edce2d",
+      "modified": 1623370280413,
+      "created": 1623370232362,
+      "url": "https://agilepoker-api.herokuapp.com/votes",
+      "name": "Criar",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"number\": 5,\n\t\"participantId\": \"3312ec48-df64-4f85-935a-fe83558d9534\",\n\t\"historyId\": 1,\n\t\"meetId\": \"fb4a50d3-bf08-4fff-bb50-220e055d4b55\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_a205bc6a7d4245a28d9215d6ebd27eb1"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1623369801765.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_ec3a9b6a5ee04e5bb08a501081edce2d",
+      "parentId": "wrk_7b2ea3b3bd7d4aee8f73a5021b1f3cfe",
+      "modified": 1623370121792,
+      "created": 1623370121792,
+      "name": "votes",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1620511833572,
+      "_type": "request_group"
+    },
+    {
+      "_id": "env_a8af5330bdbd2b95c2264806a43388f13f412295",
+      "parentId": "wrk_7b2ea3b3bd7d4aee8f73a5021b1f3cfe",
+      "modified": 1623368490080,
+      "created": 1623368490080,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1623368490080,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_a8af5330bdbd2b95c2264806a43388f13f412295",
+      "parentId": "wrk_7b2ea3b3bd7d4aee8f73a5021b1f3cfe",
+      "modified": 1623368490081,
+      "created": 1623368490081,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_f251b368412943de8c4ba26e3bd9815c",
+      "parentId": "wrk_7b2ea3b3bd7d4aee8f73a5021b1f3cfe",
+      "modified": 1623368489970,
+      "created": 1623368489970,
+      "fileName": "Agile Poker",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    }
+  ]
+}
