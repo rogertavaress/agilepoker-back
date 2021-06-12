@@ -2,6 +2,16 @@ const { parse } = require("pg-connection-string");
 
 const connectionOptions = parse(process.env.DATABASE_URL);
 
+const ssl = process.env.NODE_ENV !== "development" ? {
+  "ssl": true,
+    "extra": {
+      "ssl": {
+        "rejectUnauthorized": false,
+      },
+    },
+} : {}
+
+
 module.exports = [
   {
     "name": "default",
@@ -16,6 +26,7 @@ module.exports = [
     "cli": {
       "migrationsDir": process.env.POSTGRES_MIGRATIONS_DIR
     },
-    "synchronize": false
+    "synchronize": false,
+    ...ssl
   }
 ]
