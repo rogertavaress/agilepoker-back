@@ -33,7 +33,7 @@ class JoinMeetService {
     }
 
     const participant = this.participantsRepository.create({
-      meetId: meet.id,
+      meet_id: meet.id,
       name,
     });
 

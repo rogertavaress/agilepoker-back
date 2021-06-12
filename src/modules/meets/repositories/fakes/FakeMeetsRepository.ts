@@ -8,7 +8,7 @@ class FakeMeetsRepository implements IMeetsRepository {
   private meets: Meet[] = [];
 
   public async findByID(id: string): Promise<Meet | undefined> {
-    const findMeet = this.meets.find(meet => meet.idMeet === id);
+    const findMeet = this.meets.find(meet => meet.id === id);
 
     return findMeet;
   }
@@ -17,7 +17,7 @@ class FakeMeetsRepository implements IMeetsRepository {
     const findMeet =
       this.meets.filter(
         meet =>
-          meet.idMeet === data.idMeet ||
+          meet.id === data.meet_id ||
           meet.name === data.name ||
           meet.email === data.email,
       ) ?? [];
@@ -36,7 +36,7 @@ class FakeMeetsRepository implements IMeetsRepository {
   }
 
   public async save(meet: Meet): Promise<Meet> {
-    const findIndex = this.meets.findIndex(findMeet => findMeet.idMeet === meet.idMeet);
+    const findIndex = this.meets.findIndex(findMeet => findMeet.id === meet.id);
 
     this.meets[findIndex] = meet;
 

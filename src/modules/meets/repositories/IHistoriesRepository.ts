@@ -1,7 +1,7 @@
 import ICreateHistoryDTO from '../dtos/ICreateHistoryDTO';
 import History from '../infra/typeorm/entities/History';
 
-export default interface IHistoryRepository {
+export default interface IHistoriesRepository {
   findByID(id: string): Promise<History | undefined>;
   create(data: ICreateHistoryDTO): History;
   save(history: History): Promise<History>;

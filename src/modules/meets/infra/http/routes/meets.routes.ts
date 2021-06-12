@@ -27,11 +27,11 @@ meetsRouter.patch(
   '/status',
   celebrate({
     [Segments.BODY]: {
-      idMeet: Joi.string().required().messages({
+      meet_id: Joi.string().required().messages({
         'string.empty': `O código da reunião não pode ser vazio`,
         'any.required': `Campo código da reunião é obrigatório`,
       }),
-      statusMeet: Joi.string().required(),
+      status_meet: Joi.string().required(),
     },
   }),
   meetsController.updateStatus,
@@ -41,8 +41,8 @@ meetsRouter.patch(
   '/historyNow',
   celebrate({
     [Segments.BODY]: {
-      idMeet: Joi.string().required(),
-      idHistoryNow: Joi.number().required(),
+      meet_id: Joi.string().required(),
+      history_now_id: Joi.string().required(),
     },
   }),
   meetsController.updateHistoryNow,

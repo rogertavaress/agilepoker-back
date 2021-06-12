@@ -9,7 +9,7 @@ historyRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
-      meetId: Joi.string().required(),
+      meet_id: Joi.string().required(),
       name: Joi.string().required(),
       category: Joi.string(),
     },
@@ -21,7 +21,7 @@ historyRouter.delete(
   '/',
   celebrate({
     [Segments.BODY]: {
-      id: Joi.number().required(),
+      id: Joi.string().required(),
     },
   }),
   historyController.destroy,

@@ -19,17 +19,17 @@ class Vote {
   number: number;
 
   @Column()
-  historyId: string;
+  history_id: string;
 
   @ManyToOne(() => History)
-  @JoinColumn({ name: 'historyId' })
+  @JoinColumn({ name: 'history_id' })
   history: History;
 
   @Column()
-  participantId: string;
+  participant_id: string;
 
   @ManyToOne(() => Participant)
-  @JoinColumn({ name: 'participantId' })
+  @JoinColumn({ name: 'participant_id' })
   participant: Participant;
 
   @CreateDateColumn({ type: 'timestamptz' })

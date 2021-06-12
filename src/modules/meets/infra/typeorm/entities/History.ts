@@ -14,7 +14,7 @@ import Vote from './Vote';
 @Entity('histories')
 class History {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   name: string;
@@ -32,10 +32,10 @@ class History {
   votes: Vote[];
 
   @Column()
-  meetId: string;
+  meet_id: string;
 
   @ManyToOne(() => Meet)
-  @JoinColumn({ name: 'meetId' })
+  @JoinColumn({ name: 'meet_id' })
   meet: Meet;
 
   @CreateDateColumn({ type: 'timestamptz' })

@@ -19,13 +19,13 @@ export default class MeetsController {
   }
 
   public async updateStatus(req: Request, res: Response): Promise<Response> {
-    const { idMeet, statusMeet } = req.body;
+    const { meet_id, status_meet } = req.body;
 
     const updateMeetStatus = container.resolve(UpdateMeetStatusService);
 
     const meet = await updateMeetStatus.execute({
-      idMeet,
-      statusMeet,
+      meet_id,
+      status_meet,
     });
     return res.status(200).json(meet);
   }
@@ -34,13 +34,13 @@ export default class MeetsController {
     req: Request,
     res: Response,
   ): Promise<Response> {
-    const { idMeet, idHistoryNow } = req.body;
+    const { meet_id, history_now_id } = req.body;
 
     const changeHistoryNow = container.resolve(ChangeHistoryNowService);
 
     const meet = await changeHistoryNow.execute({
-      idMeet,
-      idHistory: idHistoryNow,
+      meet_id,
+      history_id: history_now_id,
     });
 
     return res.status(200).json(meet);

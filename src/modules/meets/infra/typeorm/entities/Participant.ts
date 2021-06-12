@@ -20,7 +20,7 @@ class Participant {
   name: string;
 
   @Column()
-  meetId: string;
+  meet_id: string;
 
   @Column({ nullable: true })
   longitude: number;
@@ -29,7 +29,7 @@ class Participant {
   latitude: number;
 
   @ManyToOne(() => Meet)
-  @JoinColumn({ name: 'meetId' })
+  @JoinColumn({ name: 'meet_id' })
   meet: Meet;
 
   @OneToMany(() => Vote, vote => vote.participant)

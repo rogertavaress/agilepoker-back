@@ -5,12 +5,12 @@ import { ptBR } from 'date-fns/locale';
 import { inject, injectable } from 'tsyringe';
 import MeetStatusEnum from '../enums/MeetStatusEnum';
 import Meet from '../infra/typeorm/entities/Meet';
-import IHistoryRepository from '../repositories/IHistoryRepository';
+import IHistoriesRepository from '../repositories/IHistoriesRepository';
 import IMeetsRepository from '../repositories/IMeetsRepository';
 
 interface IRequest {
-  idMeet: string;
-  statusMeet: string;
+  meet_id: string;
+  status_meet: string;
 }
 
 @injectable()
@@ -19,19 +19,19 @@ class UpdateMeetStatusService {
     @inject('MeetsRepository')
     private meetsRepository: IMeetsRepository,
 
-    @inject('HistoryRepository')
-    private historyRepository: IHistoryRepository,
+    @inject('HistoriesRepository')
+    private historiesRepository: IHistoriesRepository,
   ) {}
 
-  public async execute({ idMeet, statusMeet }: IRequest): Promise<Meet> {
-    const meet = await this.meetsRepository.findByID(idMeet);
+  public async execute({ meet_id, status_meet }: IRequest): Promise<Meet> {
+    const meet = await this.meetsRepository.findByID(meet_id);
 
     if (!meet) {
       throw new AppError('Reunião não encontrada');
     }
 
     const newStatus =
-      MeetStatusEnum[statusMeet.toUpperCase() as keyof typeof MeetStatusEnum];
+      MeetStatusEnum[status_meet.toUpperCase() as keyof typeof MeetStatusEnum];
 
     if (!newStatus) {
       throw new AppError('Status não encontrado');
@@ -41,7 +41,7 @@ class UpdateMeetStatusService {
       newStatus === MeetStatusEnum.PAUSED &&
       meet.status === MeetStatusEnum.PLAYED
     ) {
-      const history = meet.historyNow;
+      const history = meet.history_now;
 
       if (history) {
         history.time += differenceInMilliseconds(
@@ -62,7 +62,7 @@ class UpdateMeetStatusService {
           meet.histories[historyIndex] = history;
         }
 
-        await this.historyRepository.save(history);
+        await this.historiesRepository.save(history);
       }
     }
 

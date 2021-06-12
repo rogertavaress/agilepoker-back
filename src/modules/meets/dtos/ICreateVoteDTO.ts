@@ -1,6 +1,6 @@
 export default interface ICreateVoteDTO {
   number: number;
-  participantId: string;
-  historyId: string;
-  meetId: string;
+  participant_id: string;
+  history_id: string;
+  meet_id: string;
 }

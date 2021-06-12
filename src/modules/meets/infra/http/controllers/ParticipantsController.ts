@@ -4,12 +4,12 @@ import { container } from 'tsyringe';
 
 export default class ParticipantsController {
   public async store(req: Request, res: Response): Promise<Response> {
-    const { idMeet, name } = req.body;
+    const { meet_id, name } = req.body;
 
     const joinUser = container.resolve(JoinUserService);
 
     const meet = await joinUser.execute({
-      id: idMeet,
+      id: meet_id,
       name,
     });
 

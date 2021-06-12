@@ -1,5 +1,5 @@
 export default interface ICreateHistoryDTO {
   name?: string;
   category?: string;
-  meetId?: string;
+  meet_id?: string;
 }

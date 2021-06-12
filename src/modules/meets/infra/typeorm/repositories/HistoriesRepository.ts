@@ -1,9 +1,9 @@
 import ICreateHistoryDTO from '@modules/meets/dtos/ICreateHistoryDTO';
-import IHistoryRepository from '@modules/meets/repositories/IHistoryRepository';
+import IHistoriesRepository from '@modules/meets/repositories/IHistoriesRepository';
 import { getRepository, Repository } from 'typeorm';
 import History from '../entities/History';
 
-class HistoryRepository implements IHistoryRepository {
+class HistoriesRepository implements IHistoriesRepository {
   private ormRepository: Repository<History>;
 
   constructor() {
@@ -27,4 +27,4 @@ class HistoryRepository implements IHistoryRepository {
   }
 }
 
-export default HistoryRepository;
+export default HistoriesRepository;

@@ -1,4 +1,4 @@
 export default interface ICreateParticipantDTO {
   name: string;
-  meetId: string;
+  meet_id: string;
 }

@@ -9,7 +9,7 @@ participantsRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
-      idMeet: Joi.string().required().messages({
+      meet_id: Joi.string().required().messages({
         'string.empty': `O código da reunião não pode ser vazio`,
         'any.required': `Campo código da reunião é obrigatório`,
       }),

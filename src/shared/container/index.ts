@@ -1,8 +1,8 @@
-import HistoryRepository from '@modules/meets/infra/typeorm/repositories/HistoryRepository';
+import HistoriesRepository from '@modules/meets/infra/typeorm/repositories/HistoriesRepository';
 import MeetsRepository from '@modules/meets/infra/typeorm/repositories/MeetsRepository';
 import ParticipantsRepository from '@modules/meets/infra/typeorm/repositories/ParticipantsRepository';
 import VotesRepository from '@modules/meets/infra/typeorm/repositories/VotesRepository';
-import IHistoryRepository from '@modules/meets/repositories/IHistoryRepository';
+import IHistoriesRepository from '@modules/meets/repositories/IHistoriesRepository';
 import IMeetsRepository from '@modules/meets/repositories/IMeetsRepository';
 import IParticipantsRepository from '@modules/meets/repositories/IParticipantsRepository';
 import IVotesRepository from '@modules/meets/repositories/IVotesRepository';
@@ -20,9 +20,9 @@ container.registerSingleton<IParticipantsRepository>(
   ParticipantsRepository,
 );
 
-container.registerSingleton<IHistoryRepository>(
-  'HistoryRepository',
-  HistoryRepository,
+container.registerSingleton<IHistoriesRepository>(
+  'HistoriesRepository',
+  HistoriesRepository,
 );
 
 container.registerSingleton<IVotesRepository>(

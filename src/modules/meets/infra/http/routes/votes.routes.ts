@@ -10,9 +10,9 @@ votesRouter.post(
   celebrate({
     [Segments.BODY]: {
       number: Joi.number().required(),
-      participantId: Joi.string().required(),
-      historyId: Joi.number().required(),
-      meetId: Joi.string().required(),
+      participant_id: Joi.string().required(),
+      history_id: Joi.string().required(),
+      meet_id: Joi.string().required(),
     },
   }),
   votesController.store,
