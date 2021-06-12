@@ -1,11 +1,11 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class locationAndTimeFeature1623511961036 implements MigrationInterface {
-    name = 'locationAndTimeFeature1623511961036'
+export class locationAndTimeFeature1623524917750 implements MigrationInterface {
+    name = 'locationAndTimeFeature1623524917750'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`ALTER TABLE "participants" ADD "longitude" integer NOT NULL`);
-        await queryRunner.query(`ALTER TABLE "participants" ADD "latitude" integer NOT NULL`);
+        await queryRunner.query(`ALTER TABLE "participants" ADD "longitude" integer`);
+        await queryRunner.query(`ALTER TABLE "participants" ADD "latitude" integer`);
         await queryRunner.query(`ALTER TABLE "histories" ADD "time" integer NOT NULL DEFAULT 0`);
         await queryRunner.query(`ALTER TABLE "histories" ADD "time_parsed" character varying NOT NULL DEFAULT ''`);
         await queryRunner.query(`ALTER TABLE "votes" DROP CONSTRAINT "FK_8213c9d0fa76bfc3ff02d3cc1e3"`);
