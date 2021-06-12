@@ -16,12 +16,6 @@ module.exports = [
     "cli": {
       "migrationsDir": process.env.POSTGRES_MIGRATIONS_DIR
     },
-    "synchronize": false,
-    "ssl": true,
-    "extra": {
-      "ssl": {
-        "rejectUnauthorized": false,
-      },
-    },
+    "synchronize": false
   }
 ]

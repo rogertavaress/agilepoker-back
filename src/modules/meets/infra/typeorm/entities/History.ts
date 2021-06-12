@@ -13,7 +13,7 @@ import Vote from './Vote';
 
 @Entity('histories')
 class History {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()
@@ -21,6 +21,12 @@ class History {
 
   @Column()
   category: string;
+
+  @Column({ default: 0 })
+  time: number;
+
+  @Column({ default: '' })
+  time_parsed: string;
 
   @OneToMany(() => Vote, vote => vote.history)
   votes: Vote[];
@@ -32,10 +38,10 @@ class History {
   @JoinColumn({ name: 'meetId' })
   meet: Meet;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamptz' })
   created_at: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamptz' })
   updated_at: Date;
 }
 

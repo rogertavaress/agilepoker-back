@@ -22,6 +22,12 @@ class Participant {
   @Column()
   meetId: string;
 
+  @Column()
+  longitude: number;
+
+  @Column()
+  latitude: number;
+
   @ManyToOne(() => Meet)
   @JoinColumn({ name: 'meetId' })
   meet: Meet;
@@ -29,10 +35,10 @@ class Participant {
   @OneToMany(() => Vote, vote => vote.participant)
   votes: Vote[];
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamptz' })
   created_at: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamptz' })
   updated_at: Date;
 }
 

@@ -12,8 +12,8 @@ services:
       POSTGRES_PASSWORD: agilepoker-db
       POSTGRES_USER: agilepoker-db
 
-  # cache_db:
-  #   image: redis:alpine
-  #   restart: always
-  #   ports:
-  #     - 6379:6379
+  cache_db:
+    image: redis:alpine
+    restart: always
+    ports:
+      - 6379:6379
