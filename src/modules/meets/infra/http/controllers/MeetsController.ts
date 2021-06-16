@@ -1,5 +1,6 @@
 import ChangeHistoryNowService from '@modules/meets/services/ChangeHistoryNowService';
 import CreateUserService from '@modules/meets/services/CreateMeetService';
+import GetMeetByIdService from '@modules/meets/services/GetMeetByIdService';
 import UpdateMeetStatusService from '@modules/meets/services/UpdateMeetStatusService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
@@ -13,6 +14,18 @@ export default class MeetsController {
     const meet = await createdUser.execute({
       name,
       email,
+    });
+
+    return res.status(200).json(meet);
+  }
+
+  public async show(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+
+    const getMeetById = container.resolve(GetMeetByIdService);
+
+    const meet = await getMeetById.execute({
+      id: id.toString(),
     });
 
     return res.status(200).json(meet);

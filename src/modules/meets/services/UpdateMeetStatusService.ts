@@ -1,4 +1,5 @@
 /* eslint-disable import/no-duplicates */
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import AppError from '@shared/errors/AppError';
 import { differenceInMilliseconds, formatDistance } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -21,6 +22,9 @@ class UpdateMeetStatusService {
 
     @inject('HistoriesRepository')
     private historiesRepository: IHistoriesRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({ meet_id, status_meet }: IRequest): Promise<Meet> {
@@ -69,6 +73,8 @@ class UpdateMeetStatusService {
     meet.status = newStatus;
 
     await this.meetsRepository.save(meet);
+
+    await this.cacheProvider.invalidate(`meets:${meet.id}`);
 
     return meet;
   }

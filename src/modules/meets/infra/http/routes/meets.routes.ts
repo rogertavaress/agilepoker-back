@@ -23,6 +23,8 @@ meetsRouter.post(
   meetsController.store,
 );
 
+meetsRouter.get('/:id', meetsController.show);
+
 meetsRouter.patch(
   '/status',
   celebrate({

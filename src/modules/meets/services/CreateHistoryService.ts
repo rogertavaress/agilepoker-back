@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import IHistoriesRepository from '../repositories/IHistoriesRepository';
 import IMeetsRepository from '../repositories/IMeetsRepository';
 import Meet from '../infra/typeorm/entities/Meet';
@@ -17,6 +18,9 @@ class CreateHistoryService {
 
     @inject('HistoriesRepository')
     private historiesRepository: IHistoriesRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({ name, category, meet_id }: IRequest): Promise<Meet> {
@@ -39,6 +43,8 @@ class CreateHistoryService {
     } else {
       meet.histories = [history];
     }
+
+    await this.cacheProvider.invalidate(`meets:${meet.id}`);
 
     return meet;
   }

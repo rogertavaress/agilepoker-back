@@ -1,3 +1,4 @@
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { isUuid } from 'uuidv4';
@@ -17,6 +18,9 @@ class JoinMeetService {
 
     @inject('ParticipantsRepository')
     private participantsRepository: IParticipantsRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({ id, name }: IRequest): Promise<any> {
@@ -38,6 +42,8 @@ class JoinMeetService {
     });
 
     await this.participantsRepository.save(participant);
+
+    await this.cacheProvider.invalidate(`meets:${meet.id}`);
 
     return {
       meet: {

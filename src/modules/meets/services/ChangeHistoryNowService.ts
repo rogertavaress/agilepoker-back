@@ -1,3 +1,4 @@
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import Meet from '../infra/typeorm/entities/Meet';
@@ -16,6 +17,9 @@ class ChangeHistoryNowService {
 
     @inject('HistoriesRepository')
     private historiesRepository: IHistoriesRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({ meet_id, history_id }: IRequest): Promise<Meet> {
@@ -41,6 +45,8 @@ class ChangeHistoryNowService {
     if (!meet) {
       throw new AppError('Reunião não encontrada');
     }
+
+    await this.cacheProvider.invalidate(`meets:${meet.id}`);
 
     return meet;
   }
