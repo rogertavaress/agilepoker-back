@@ -7,9 +7,10 @@ const sockets = (http: any): void => {
   io.on('connection', (socket: Socket) => {
     console.log(`> Usuário conectado: ${socket.id}`);
 
-    socket.on('join-meet', (data: any) => {
-      console.log(`join-meet: ${data.id}`);
+    socket.on('join-meet-request', (data: any) => {
+      console.log(`join-meet-request: ${data.id}`);
       socket.join(data.id);
+      socket.to(data.id).emit('join-meet', data);
     });
 
     socket.on('sync-request', (data: any) => {
