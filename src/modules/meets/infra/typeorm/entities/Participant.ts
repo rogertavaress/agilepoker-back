@@ -22,13 +22,13 @@ class Participant {
   @Column()
   meet_id: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'float' })
   longitude: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'float' })
   latitude: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'float' })
   altitude: number;
 
   @ManyToOne(() => Meet)
