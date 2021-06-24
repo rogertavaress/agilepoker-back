@@ -22,4 +22,20 @@ participantsRouter.post(
   participantsController.store,
 );
 
+participantsRouter.patch(
+  '/location',
+  celebrate({
+    [Segments.BODY]: {
+      participant_id: Joi.string().required().messages({
+        'string.empty': `O código do participante não pode ser vazio`,
+        'any.required': `Campo código do participante é obrigatório`,
+      }),
+      altitude: Joi.number().required(),
+      latitude: Joi.number().required(),
+      longitude: Joi.number().required(),
+    },
+  }),
+  participantsController.updateLocation,
+);
+
 export default participantsRouter;

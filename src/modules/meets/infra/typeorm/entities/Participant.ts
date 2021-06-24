@@ -28,6 +28,9 @@ class Participant {
   @Column({ nullable: true })
   latitude: number;
 
+  @Column({ nullable: true })
+  altitude: number;
+
   @ManyToOne(() => Meet)
   @JoinColumn({ name: 'meet_id' })
   meet: Meet;
